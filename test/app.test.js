@@ -5,14 +5,16 @@ var path = require('path'),
 
 describe('test app.js', function () {
 
-  var app;
+  var App;
 
   beforeEach(function () {
-    app = rewire(path.resolve('scripts/app'));
+    App = rewire(path.resolve('scripts/app'));
   });
 
-  it('sould is function that return 0', function () {
-    expect(app()).to.equal(0);
+  it('sould be a function that return 0', function () {
+    var app = new App();
+    expect(app).to.have.property('compute').that.is.a('function');
+    expect(app.compute()).that.is.a('number').equal(0);
   });
 
 });
